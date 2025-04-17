@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laennec - Заказ со скидкой</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #20bf55, #01baef);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.25rem;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+    .description {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    .description h3 {
+      font-size: 1.75rem;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+    .description ul {
+      padding-left: 1.2rem;
+    }
+    .flex-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+    .wheel-box, .form-container {
+      flex: 1 1 350px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .wheel-box h2, .form-container h2 {
+      font-family: 'Playfair Display', serif;
+      color: #20bf55;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.9rem;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    input[readonly] {
+      background: #f0f0f0;
+    }
+    button {
+      background: #20bf55;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #17a045;
+    }
+    .wheel-button {
+      background: #20bf55;
+    }
+    .wheel-button:hover {
+      background: #17a045;
+    }
+    .status-line, .discount-result, .timer, .next-try {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    .discount-animated {
+      animation: flash 0.6s infinite alternate;
+    }
+    @keyframes flash {
+      0% { color: #20bf55; transform: scale(1); }
+      100% { color: #fbc531; transform: scale(1.15); }
+    }
+    .whatsapp-button {
+      display: block;
+      margin-top: 25px;
+      text-align: center;
+      background: #25D366;
+      color: #fff;
+      font-size: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .form-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    footer {
+      background: #ecf0f1;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .flex-block {
+        flex-direction: column;
+      }
+      .form-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Laennec (Лаеннек)</h1>
+    <p>Инновационный японский препарат для омоложения и оздоровления</p>
+  </header>
+  <div class="container">
+    <div class="description">
+      <h3>О препарате Laennec</h3>
+      <p><strong>Laennec</strong> — это уникальный японский препарат на основе гидролизата плаценты человека. Используется в антивозрастной терапии, для восстановления печени, иммунной поддержки и общего оздоровления организма.</p>
+      <ul>
+        <li>Омоложение кожи и организма</li>
+        <li>Укрепление иммунитета</li>
+        <li>Поддержка печени</li>
+      </ul>
+    </div>
+    <div class="flex-block">
+      <div class="wheel-box">
+        <h2>Испытай удачу!</h2>
+        <button class="wheel-button" onclick="spinWheel()">Получить скидку</button>
+        <div id="discountResult" class="discount-result"></div>
+        <div id="timerBlock" class="timer"></div>
+        <div id="nextTryBlock" class="next-try"></div>
+        <a class="whatsapp-button" href="https://wa.me/77073790022" target="_blank">💬 WhatsApp Консультация</a>
+      </div>
+      <div class="form-container">
+        <h2>Оформить заказ</h2>
+        <form id="orderForm" action="https://script.google.com/macros/s/AKfycbznYLobuy2EY6dmAgcC80R_IvxvLJLcNQBO8qaGQNpqM5gGaW1ltCoXDW92MwAo65m35g/exec" method="POST">
+          <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+          <input type="tel" id="phone" name="phone" placeholder="Телефон" required>
+          <input type="text" id="discount" name="discount" placeholder="Ваша скидка, %" onkeydown="return false;">
+          <textarea id="comment" name="comment" placeholder="Комментарий"></textarea>
+          <div class="form-buttons">
+            <button type="submit">Отправить заявку</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Laennec. Все права защищены.
+  </footer>
+  <script>
+    function spinWheel() {
+      const now = Date.now();
+      const lastSpin = localStorage.getItem('lastSpin');
+      const discountResult = document.getElementById('discountResult');
+      discountResult.classList.remove('discount-animated');
+
+      if (lastSpin && now - lastSpin < 86400000) {
+        const remaining = 86400000 - (now - lastSpin);
+        const h = Math.floor(remaining / 3600000);
+        const m = Math.floor((remaining % 3600000) / 60000);
+        const s = Math.floor((remaining % 60000) / 1000);
+        document.getElementById('nextTryBlock').textContent = `Следующая попытка через: ${h}ч ${m}м ${s}с`;
+        return;
+      }
+      localStorage.setItem('lastSpin', now);
+      document.getElementById('nextTryBlock').textContent = '';
+
+      const discounts = [5, 10, 15, 20];
+      const weights = [84, 10, 5, 1];
+      let sum = weights.reduce((a, b) => a + b);
+      let rand = Math.floor(Math.random() * sum);
+      let selected;
+      for (let i = 0; i < discounts.length; i++) {
+        if (rand < weights[i]) {
+          selected = discounts[i];
+          break;
+        }
+        rand -= weights[i];
+      }
+
+      document.getElementById('discount').value = selected;
+      discountResult.textContent = `Ваша скидка: ${selected}%`;
+      if (selected >= 15) {
+        discountResult.classList.add('discount-animated');
+      }
+
+      let timeLeft = 120;
+      const timerBlock = document.getElementById('timerBlock');
+      const countdown = setInterval(() => {
+        timerBlock.textContent = `Скидка действует: ${timeLeft} сек.`;
+        timeLeft--;
+        if (timeLeft < 0) {
+          clearInterval(countdown);
+          timerBlock.textContent = 'Скидка истекла';
+          document.getElementById('discount').value = '';
+        }
+      }, 1000);
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data
+      })
+      .then(() => {
+        alert("Заявка отправлена!");
+        form.reset();
+      })
+      .catch(() => {
+        alert("Заявка отправлена");
+      });
+    });
+  </script>
+</body>
+</html>
