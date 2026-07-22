@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Japan Medical</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+
+background:#f5f5f7;
+
+color:#222;
+
+padding-bottom:90px;
+
+}
+
+header{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+background:rgba(255,255,255,.92);
+
+backdrop-filter:blur(18px);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 20px;
+
+z-index:999;
+
+box-shadow:0 4px 15px rgba(0,0,0,.05);
+
+}
+
+.logo{
+
+font-size:24px;
+
+font-weight:800;
+
+letter-spacing:1px;
+
+color:#8b6a2f;
+
+}
+
+.search{
+
+width:42px;
+
+height:42px;
+
+border-radius:50%;
+
+background:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:18px;
+
+box-shadow:0 5px 12px rgba(0,0,0,.08);
+
+}
+
+.hero{
+
+height:100vh;
+
+background:url("images/banner.jpg") center center/cover no-repeat;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+position:relative;
+
+}
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+right:0;
+
+bottom:0;
+
+background:rgba(255,255,255,.70);
+
+backdrop-filter:blur(3px);
+
+}
+
+.hero-content{
+
+position:relative;
+
+z-index:2;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+font-weight:800;
+
+margin-bottom:20px;
+
+color:#8b6a2f;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#444;
+
+}
+
+.scroll{
+
+margin-top:40px;
+
+font-size:14px;
+
+color:#777;
+
+animation:move 2s infinite;
+
+}
+
+@keyframes move{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(10px);}
+100%{transform:translateY(0);}
+
+}
+
+section{
+
+padding:60px 18px;
+
+}
+
+.title{
+
+font-size:34px;
+
+font-weight:800;
+
+text-align:center;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+color:#777;
+
+margin-bottom:40px;
+
+line-height:1.8;
+
+}
+
+.cards{
+
+max-width:650px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:28px;
+
+overflow:hidden;
+
+box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+
+}
+
+.card img{
+
+width:100%;
+
+display:block;
+
+}
+
+.info{
+
+padding:25px;
+
+}
+
+.name{
+
+font-size:28px;
+
+font-weight:700;
+
+color:#8b6a2f;
+
+margin-bottom:12px;
+
+}
+
+.price{
+
+font-size:32px;
+
+font-weight:800;
+
+color:#b71c1c;
+
+margin-bottom:10px;
+
+}
+
+.pack{
+
+display:inline-block;
+
+padding:8px 16px;
+
+background:#efefef;
+
+border-radius:40px;
+
+font-size:14px;
+
+margin-bottom:20px;
+
+}
+
+.details{
+
+max-height:0;
+
+overflow:hidden;
+
+transition:max-height .5s ease;
+
+}
+
+.card.active .details{
+
+max-height:900px;
+
+margin-top:20px;
+
+}
+
+.details h3{
+
+margin:18px 0 10px;
+
+color:#8b6a2f;
+
+font-size:18px;
+
+}
+
+.details p{
+
+line-height:1.8;
+
+color:#555;
+
+}
+
+.badges{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-top:20px;
+
+}
+
+.badges span{
+
+background:#f2f2f2;
+
+padding:10px 16px;
+
+border-radius:30px;
+
+font-size:14px;
+
+}
+
+footer{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+background:white;
+
+display:flex;
+
+justify-content:space-around;
+
+padding:12px 0;
+
+box-shadow:0 -5px 20px rgba(0,0,0,.08);
+
+z-index:999;
+
+}
+
+footer a{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:6px;
+
+text-decoration:none;
+
+font-size:12px;
+
+color:#555;
+
+font-weight:600;
+
+}
+
+footer svg{
+
+width:24px;
+
+height:24px;
+
+stroke:#8b6a2f;
+
+fill:none;
+
+stroke-width:2;
+
+}
+
+.contact{
+
+max-width:650px;
+
+margin:auto;
+
+background:white;
+
+padding:35px;
+
+border-radius:28px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+.contact a{
+
+display:block;
+
+margin:18px 0;
+
+font-size:20px;
+
+text-decoration:none;
+
+color:#333;
+
+font-weight:600;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+JAPAN MEDICAL
+
+</div>
+
+<div class="search">
+
+🔍
+
+</div>
+
+</header>
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>
+
+Каталог препаратов
+
+</h1>
+
+<p>
+
+Плацентарные препараты<br>
+
+Антиоксиданты<br>
+
+Витаминная терапия
+
+</p>
+
+<div class="scroll">
+
+▼ Листайте вниз ▼
+
+</div>
+
+</div>
+
+</section>
+
+<section id="catalog">
+
+<h2 class="title">
+
+Препараты
+
+</h2>
+
+<p class="subtitle">
+
+Нажмите на карточку, чтобы открыть подробную информацию.
+
+</p>
+
+<div class="cards">
+
+<!-- ================= LAENNEC ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/laennec.jpg" alt="Laennec">
+
+<div class="info">
+
+<div class="name">
+💉 Laennec
+</div>
+
+<div class="price">
+220 000 ₸
+</div>
+
+<div class="pack">
+50 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Laennec — оригинальный японский препарат на основе гидролизата плаценты человека, производимый компанией Japan Bio Products (JBP). В Японии применяется по зарегистрированным показаниям. Перед применением необходимо ознакомиться с официальной инструкцией.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>🏭 JBP</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Поддержка функций печени<br>
+• Антиоксидантная защита<br>
+• Участие в процессах регенерации тканей<br>
+• Иммуномодулирующее действие
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+
+220 000 ₸
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= MELSMON ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/melsmon.jpg" alt="Melsmon">
+
+<div class="info">
+
+<div class="name">
+🌸 Melsmon
+</div>
+
+<div class="price">
+210 000 ₸
+</div>
+
+<div class="pack">
+50 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Melsmon — оригинальный японский плацентарный препарат. Используется в соответствии с официальной инструкцией производителя и зарегистрированными показаниями.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>🏭 Melsmon Pharmaceutical</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Поддержка организма<br>
+• Поддержка женского здоровья<br>
+• Антиоксидантная защита<br>
+• Участие в восстановительных процессах
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+
+210 000 ₸
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= CURACEN ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/curacen.jpg" alt="Curacen">
+
+<div class="info">
+
+<div class="name">
+✨ Curacen
+</div>
+
+<div class="price">
+330 000 ₸
+</div>
+
+<div class="pack">
+50 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Curacen — японский плацентарный препарат, производимый компанией JBP. Используется в соответствии с официальной инструкцией производителя.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>🏭 JBP</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Поддержка регенерации тканей<br>
+
+• Антиоксидантная защита<br>
+
+• Поддержка кожи<br>
+
+• Восстановительные процессы
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+
+330 000 ₸
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= TATION ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/tation.jpg" alt="Tation">
+
+<div class="info">
+
+<div class="name">
+🧬 Tation
+</div>
+
+<div class="price">
+210 000 ₸
+</div>
+
+<div class="pack">
+50 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Tation — японский препарат на основе глутатиона, применяемый в соответствии с официальной инструкцией производителя.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>🛡 Глутатион</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Антиоксидантная защита<br>
+
+• Поддержка печени<br>
+
+• Защита клеток<br>
+
+• Участие в естественных процессах детоксикации
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+
+210 000 ₸
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= GLUTATHIONE ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/glutathione.jpg" alt="Glutathione">
+
+<div class="info">
+
+<div class="name">
+🧪 Глутатион
+</div>
+
+<div class="price">
+325 000 ₸
+</div>
+
+<div class="pack">
+100 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Глутатион — один из основных антиоксидантов организма. Используется в различных медицинских программах в соответствии с показаниями и инструкцией производителя.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 100 ампул</span>
+
+<span>🛡 Антиоксидант</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Антиоксидантная защита<br>
+
+• Поддержка функций печени<br>
+
+• Защита клеток от окислительного стресса<br>
+
+• Участие в естественных процессах детоксикации
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+
+325 000 ₸
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= THIOCTIC ACID ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/thioctic.jpg" alt="Тиоктовая кислота">
+
+<div class="info">
+
+<div class="name">
+⚡ Тиоктовая кислота
+</div>
+
+<div class="price">
+150 000 ₸
+</div>
+
+<div class="pack">
+100 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Тиоктовая (альфа-липоевая) кислота — антиоксидант, участвующий в энергетическом обмене клеток. Применяется по назначению врача в соответствии с официальной инструкцией.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 100 ампул</span>
+
+<span>⚡ Альфа-липоевая кислота</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Антиоксидантная защита<br>
+• Поддержка обмена веществ<br>
+• Поддержка нервной системы<br>
+• Поддержка функций печени
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+150 000 ₸
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= MECOBALAMIN ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/mecobalamin.jpg" alt="Мекобаламин">
+
+<div class="info">
+
+<div class="name">
+🧠 Мекобаламин
+</div>
+
+<div class="price">
+120 000 ₸
+</div>
+
+<div class="pack">
+50 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Мекобаламин — активная форма витамина B12. Используется в соответствии с официальной инструкцией.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>🧠 Витамин B12</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Поддержка нервной системы<br>
+• Участие в кроветворении<br>
+• Обмен веществ
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+120 000 ₸
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= VITAMIN C ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/vitaminc.jpg" alt="Vitamin C">
+
+<div class="info">
+
+<div class="name">
+🍋 Vitamin C 500
+</div>
+
+<div class="price">
+110 000 ₸
+</div>
+
+<div class="pack">
+50 ампул
+</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Витамин C участвует в синтезе коллагена, обладает антиоксидантными свойствами и поддерживает нормальную работу иммунной системы.
+
+</p>
+
+<h3>Основная информация</h3>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>🍊 Vitamin C</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+<h3>Возможные свойства</h3>
+
+<p>
+
+• Антиоксидантная защита<br>
+• Поддержка иммунной системы<br>
+• Синтез коллагена
+
+</p>
+
+<h3>Стоимость</h3>
+
+<div class="price">
+110 000 ₸
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= BIOTIN ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/biotin.jpg" alt="Биотин">
+
+<div class="info">
+
+<div class="name">🌿 Биотин</div>
+
+<div class="price">90 000 ₸</div>
+
+<div class="pack">50 ампул</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Биотин (витамин B7) участвует в обмене белков, жиров и углеводов. Используется в соответствии с официальной инструкцией.
+
+</p>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>💇 Волосы</span>
+
+<span>💅 Ногти</span>
+
+<span>✨ Кожа</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= HI PLEAMIN ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/hipleamin.jpg" alt="Hi Pleamin">
+
+<div class="info">
+
+<div class="name">💉 Hi Pleamin</div>
+
+<div class="price">90 000 ₸</div>
+
+<div class="pack">50 ампул</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Hi Pleamin — раствор аминокислот для парентерального питания. Используется в медицинской практике по показаниям.
+
+</p>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>💪 Аминокислоты</span>
+
+<span>⚡ Восстановление</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= KRISTFAN ================= -->
+
+<div class="card" onclick="toggleCard(this)">
+
+<img src="images/kristfan.jpg" alt="Кристфан">
+
+<div class="info">
+
+<div class="name">💎 Кристфан</div>
+
+<div class="price">130 000 ₸</div>
+
+<div class="pack">50 ампул</div>
+
+<div class="details">
+
+<h3>Описание</h3>
+
+<p>
+
+Информация о препарате представлена для ознакомления. Перед применением необходимо ознакомиться с официальной инструкцией производителя.
+
+</p>
+
+<div class="badges">
+
+<span>🇯🇵 Япония</span>
+
+<span>💉 50 ампул</span>
+
+<span>📦 Заводская упаковка</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="contacts">
+
+<div class="contact">
+
+<h2 style="margin-bottom:30px;color:#8b6a2f;">
+
+Контакты
+
+</h2>
+
+<a href="tel:+77007302010">
+
+📞 +7 700 730 20 10
+
+</a>
+
+<a href="https://wa.me/77007302010" target="_blank">
+
+💬 WhatsApp
+
+</a>
+
+<a href="https://t.me/kimand8" target="_blank">
+
+✈ Telegram @kimand8
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<a href="#home">
+
+<svg viewBox="0 0 24 24">
+<path d="M3 11L12 3L21 11V20H15V14H9V20H3Z"/>
+</svg>
+
+Главная
+
+</a>
+
+<a href="#catalog">
+
+<svg viewBox="0 0 24 24">
+<rect x="4" y="4" width="16" height="16" rx="2"/>
+<path d="M8 8H16M8 12H16M8 16H13"/>
+</svg>
+
+Каталог
+
+</a>
+
+<a href="#contacts">
+
+<svg viewBox="0 0 24 24">
+<path d="M21 16V20H17C9 20 4 15 4 7V3H8L10 8L7.5 10.5C8.8 13 11 15.2 13.5 16.5L16 14L21 16Z"/>
+</svg>
+
+Контакты
+
+</a>
+
+</footer>
+
+
+
+<script>
+
+function toggleCard(card){
+
+document.querySelectorAll(".card").forEach(function(item){
+
+if(item!==card){
+
+item.classList.remove("active");
+
+}
+
+});
+
+card.classList.toggle("active");
+
+}
+
+</script>
+
+</body>
+
+</html>
+
