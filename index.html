@@ -24,21 +24,109 @@ box-sizing:border-box;
 font-family:'Montserrat',sans-serif;
 scroll-behavior:smooth;
 }
+  
+/* ===== AI чат ===== */
+#chat-btn{
+position:fixed;
+right:20px;
+bottom:100px;
+width:64px;
+height:64px;
+border-radius:50%;
+background:#8b6a2f;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+cursor:pointer;
+z-index:2000;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
 
-  <div id="chat-btn">🤖</div>
+#chat-window{
+display:none;
+position:fixed;
+right:20px;
+bottom:175px;
+width:360px;
+max-width:calc(100% - 30px);
+height:520px;
+background:white;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+z-index:2001;
+}
 
-<div id="chat-window">
-    <div class="chat-header">
-        AI-консультант
-        <span id="close-chat">✕</span>
-    </div>
+.chat-header{
+background:#8b6a2f;
+color:white;
+padding:16px 18px;
+font-weight:700;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-    <div id="chat-body">
-        <div class="bot">
-            👋 Здравствуйте! Я помогу подобрать японские препараты.
-        </div>
-    </div>
+#close-chat{
+cursor:pointer;
+font-size:18px;
+}
 
+#chat-body{
+height:380px;
+overflow-y:auto;
+padding:16px;
+background:#f8f7f5;
+}
+
+.bot,.user{
+padding:12px 14px;
+border-radius:18px;
+margin-bottom:10px;
+line-height:1.5;
+font-size:14px;
+}
+
+.bot{
+background:white;
+color:#333;
+border:1px solid #eee;
+}
+
+.user{
+background:#8b6a2f;
+color:white;
+margin-left:40px;
+}
+
+.chat-input{
+padding:12px;
+border-top:1px solid #eee;
+display:flex;
+gap:8px;
+background:white;
+}
+
+.chat-input input{
+flex:1;
+padding:12px;
+border:1px solid #ddd;
+border-radius:14px;
+font-size:14px;
+margin:0;
+}
+
+.chat-input button{
+width:48px;
+border:none;
+border-radius:14px;
+background:#8b6a2f;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
     <div class="chat-input">
         <input id="message" placeholder="Введите сообщение...">
         <button id="send">➤</button>
@@ -1319,20 +1407,138 @@ Crystfan (Кристфан) состоит из продукта метабол�
 <script>
 
 function toggleCard(card){
-
-document.querySelectorAll(".card").forEach(function(item){
-
-if(item!==card){
-
-item.classList.remove("active");
-
+  document.querySelectorAll(".card").forEach(function(item){
+    if(item!==card){
+      item.classList.remove("active");
+    }
+  });
+  card.classList.toggle("active");
 }
 
+// ===== База знаний =====
+const knowledge = {
+  laennec: {
+    keywords:["лаеннек","laennec"],
+    answer:`💉 ЛАЕННЕК (Laennec)
+
+🏭 Производитель: Japan Bio Products Co., Ltd., Япония
+📦 Упаковка: 50 ампул по 2 мл
+🧪 Состав: гидролизат плаценты человека
+
+📌 Основные эффекты:
+• поддержка функции печени
+• антиоксидантная защита
+• стимуляция регенерации тканей
+• иммуномодулирующее действие
+
+💉 Способ применения: внутривенно капельно, обычно 2 ампулы разводят в 200 мл физраствора. Курс — 5–10 процедур 2–3 раза в неделю.
+
+⚠️ Противопоказания: индивидуальная гиперчувствительность, беременность и лактация — только по назначению врача.`
+  },
+
+  melsmon: {
+    keywords:["мэлсмон","melsmon"],
+    answer:`🌸 MELSMON
+
+🏭 Производитель: Melsmon Pharmaceutical Co., Ltd., Япония
+📦 Упаковка: 50 ампул
+💉 Применяется подкожно.
+
+📌 Используется в Японии для терапии симптомов климактерического периода, хронической усталости и возрастных изменений кожи.
+
+⚠️ Самостоятельное применение без врача не рекомендуется.`
+  },
+
+  curacen: {
+    keywords:["курасен","curacen"],
+    answer:`✨ CURACEN
+
+🏭 Производитель: Japan Bio Products Co., Ltd.
+📦 Упаковка: 50 ампул
+
+📌 Содержит плацентарные пептиды, аминокислоты и факторы роста. Часто используется в эстетической медицине для кожи и волос.
+
+💉 Вводится локально врачом курсом 3–10 процедур.`
+  },
+
+  tathion: {
+    keywords:["татион","tathion"],
+    answer:`🧬 TATHION (глутатион)
+
+🏭 Японский инъекционный глутатион
+📦 Упаковка: 50 ампул
+
+📌 Основные свойства: антиоксидантная защита, поддержка печени, участие в детоксикации организма.
+
+🤝 Часто сочетается с витамином C и плацентарными препаратами в инфузионных программах.`
+  }
+};
+
+// ===== AI чат =====
+const chatBtn = document.getElementById("chat-btn");
+const chatWindow = document.getElementById("chat-window");
+const closeChat = document.getElementById("close-chat");
+const chatBody = document.getElementById("chat-body");
+const messageInput = document.getElementById("message");
+const sendBtn = document.getElementById("send");
+
+chatBtn.onclick = () => {
+  chatWindow.style.display = "block";
+};
+
+closeChat.onclick = () => {
+  chatWindow.style.display = "none";
+};
+
+function addMessage(text, type){
+  const div = document.createElement("div");
+  div.className = type;
+  div.innerHTML = text.replace(/\\n/g,"<br>");
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function findAnswer(text){
+  const t = text.toLowerCase();
+
+  for(const key in knowledge){
+    const item = knowledge[key];
+    if(item.keywords.some(k => t.includes(k))){
+      return item.answer;
+    }
+  }
+
+  if(t.includes("совмест")){
+    return "🤝 Многие антиоксидантные препараты (Татион, Глутатион, витамин C) используются совместно в инфузионных программах, но совместимость и дозировки должен определять врач.";
+  }
+
+  if(t.includes("противопоказ")){
+    return "⚠️ Для большинства инъекционных препаратов общими ограничениями являются аллергия на компоненты, острые инфекции, беременность и период лактации без назначения врача.";
+  }
+
+  return "🤖 Я могу ответить по препаратам: Лаеннек, Melsmon, Curacen, Татион, Глутатион, витамин C, Мекобаламин, Биотин и другим из вашего каталога. Уточните название препарата или вопрос.";
+}
+
+function sendMessage(){
+  const text = messageInput.value.trim();
+  if(!text) return;
+
+  addMessage(text,"user");
+  messageInput.value = "";
+
+  setTimeout(() => {
+    addMessage(findAnswer(text), "bot");
+  }, 400);
+}
+
+sendBtn.onclick = sendMessage;
+
+messageInput.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    e.preventDefault();
+    sendMessage();
+  }
 });
-
-card.classList.toggle("active");
-
-}
 
 </script>
 
