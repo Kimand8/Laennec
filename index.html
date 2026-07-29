@@ -570,13 +570,68 @@ font-weight:600;
 
 }
 
+  /* ===== FAQ окно ===== */
+.faq-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:4000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.faq-content{
+  width:100%;
+  max-width:760px;
+  max-height:90vh;
+  background:white;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.faq-header{
+  background:#8b6a2f;
+  color:white;
+  padding:18px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:700;
+  font-size:18px;
+}
+
+.faq-close{
+  cursor:pointer;
+  font-size:22px;
+}
+
+.faq-body{
+  max-height:calc(90vh - 70px);
+  overflow-y:auto;
+  padding:22px;
+}
+
+.faq-item{
+  border-bottom:1px solid #eee;
+  padding:16px 0;
+}
+
+.faq-item h3{
+  color:#8b6a2f;
+  margin-bottom:10px;
+  font-size:17px;
+}
+
+.faq-item p{
+  line-height:1.7;
+  color:#555;
+}
+  
 </style>
 
-</head>
-
-<body>
-
-  ```html
 </head>
 
 <body>
@@ -1459,42 +1514,23 @@ Crystfan (Кристфан) состоит из продукта метабол�
 
 <footer>
 
-<a href="#home">
+  <a href="#home">
+    Главная
+  </a>
 
-<svg viewBox="0 0 24 24">
-<path d="M3 11L12 3L21 11V20H15V14H9V20H3Z"/>
-</svg>
+  <a href="#catalog">
+    Каталог
+  </a>
 
-Главная
+  <a href="javascript:void(0)" onclick="openFaq()">
+    FAQ
+  </a>
 
-</a>
-
-<a href="#catalog">
-
-<svg viewBox="0 0 24 24">
-<rect x="4" y="4" width="16" height="16" rx="2"/>
-<path d="M8 8H16M8 12H16M8 16H13"/>
-</svg>
-
-Каталог
-
-</a>
-
-<a href="#contacts">
-
-<svg viewBox="0 0 24 24">
-<path d="M21 16V20H17C9 20 4 15 4 7V3H8L10 8L7.5 10.5C8.8 13 11 15.2 13.5 16.5L16 14L21 16Z"/>
-</svg>
-
-Контакты
-
-</a>
+  <a href="#contacts">
+    Контакты
+  </a>
 
 </footer>
-
-
-
-<script>
 
 function toggleCard(card){
   document.querySelectorAll(".card").forEach(function(item){
@@ -1629,9 +1665,180 @@ messageInput.addEventListener("keypress", function(e){
     sendMessage();
   }
 });
+  
+<!-- ===== FAQ окно ===== -->
+<div class="faq-modal" id="faqModal">
+  <div class="faq-content">
 
+    <div class="faq-header">
+      <span>❓ Частые вопросы</span>
+      <span class="faq-close" onclick="closeFaq()">✕</span>
+    </div>
+
+    <div class="faq-body">
+
+      <div class="faq-item">
+        <h3>Что такое Лаеннек?</h3>
+        <p>Японский плацентарный препарат на основе гидролизата плаценты человека, применяемый для поддержки регенерации тканей и функции печени.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Кто производит Laennec?</h3>
+        <p>Japan Bio Products Co., Ltd. (JBP), Япония.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли сочетать Лаеннек с витамином C?</h3>
+        <p>В клинической практике такие комбинации используются в инфузионных программах, но схема должна подбираться врачом.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Чем отличается Melsmon от Laennec?</h3>
+        <p>Melsmon чаще применяется при симптомах климактерического периода и возрастных изменениях у женщин, а Laennec имеет более широкий спектр применения.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>С какого возраста применяют плацентарные препараты?</h3>
+        <p>Обычно они рассматриваются для взрослых пациентов. Возраст и показания определяет врач.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Что такое Curacen?</h3>
+        <p>Инъекционный препарат с плацентарными пептидами и факторами роста, используемый в эстетической медицине для кожи и волос.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Для чего нужен Татион?</h3>
+        <p>Татион содержит глутатион и применяется как антиоксидант и средство поддержки детоксикационных процессов организма.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Чем отличается Татион от Глутатиона?</h3>
+        <p>Татион — это торговое название инъекционного глутатиона японского производства.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Когда применяют Мекобаламин B12?</h3>
+        <p>При дефиците витамина B12, периферической нейропатии и состояниях, связанных с нарушением функции периферических нервов.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли применять Биотин для волос?</h3>
+        <p>Биотин часто используют в программах поддержки кожи, волос и ногтей, особенно при подтверждённом дефиците витамина B7.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Что такое Хай-Плеамин?</h3>
+        <p>Это японский аминокислотный инфузионный препарат для нутритивной поддержки и восстановления белкового обмена.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Для чего применяют Кристфан?</h3>
+        <p>Препарат на основе L-цистеина и витамина C используется как антиоксидантная и детоксикационная поддержка.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Какие общие противопоказания есть у инъекционных препаратов?</h3>
+        <p>Аллергия на компоненты, острые инфекционные заболевания, некоторые хронические состояния, беременность и лактация без назначения врача.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли делать капельницы дома?</h3>
+        <p>Внутривенные инфузии должны выполняться медицинским специалистом с соблюдением правил асептики и контроля состояния пациента.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Как хранить ампулы?</h3>
+        <p>Следуйте инструкции производителя: обычно требуется хранение в защищённом от света месте при рекомендованной температуре.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли сочетать несколько антиоксидантов одновременно?</h3>
+        <p>Такие комбинации встречаются в клинической практике, но совместимость и дозировки должны оцениваться индивидуально врачом.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Через сколько процедур обычно оценивают эффект?</h3>
+        <p>Это зависит от препарата и цели терапии; многие курсовые схемы оценивают после 3–10 процедур.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Нужны ли анализы перед курсом?</h3>
+        <p>Перед инъекционной терапией врач может рекомендовать анализы крови, оценку функции печени, почек и другие обследования по показаниям.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли использовать препараты для профилактики?</h3>
+        <p>Любое профилактическое применение должно обсуждаться с врачом, поскольку польза и риски зависят от состояния здоровья конкретного человека.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Есть ли возрастные ограничения для витамина C в ампулах?</h3>
+        <p>Инъекционные формы витамина C применяются по медицинским показаниям; дозировка и возраст определяются специалистом.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+  
+  <!-- ===== FAQ модальное окно ===== -->
+<div class="faq-modal" id="faqModal">
+  <div class="faq-content">
+
+    <div class="faq-header">
+      <span>❓ Частые вопросы</span>
+      <span class="faq-close" onclick="closeFaq()">✕</span>
+    </div>
+
+    <div class="faq-body">
+      <div class="faq-item">
+        <h3>Что такое Лаеннек?</h3>
+        <p>Японский плацентарный препарат на основе гидролизата плаценты человека.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Кто производитель?</h3>
+        <p>Japan Bio Products Co., Ltd., Япония.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли сочетать с витамином C?</h3>
+        <p>Такие комбинации используются в инфузионных программах под контролем врача.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Что такое Melsmon?</h3>
+        <p>Японский плацентарный препарат, применяемый при симптомах климактерического периода и возрастных изменениях.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Можно ли делать капельницы дома?</h3>
+        <p>Внутривенные инфузии должны выполняться медицинским персоналом.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
 </script>
 
+  // ===== FAQ =====
+function openFaq(){
+  document.getElementById("faqModal").style.display = "flex";
+}
+
+function closeFaq(){
+  document.getElementById("faqModal").style.display = "none";
+}
+
+// закрытие по клику на фон
+document.addEventListener("click", function(e){
+  const modal = document.getElementById("faqModal");
+  if(e.target === modal){
+    closeFaq();
+  }
+});
+  
 </body>
 
 </html>
