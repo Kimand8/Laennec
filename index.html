@@ -1664,24 +1664,67 @@ messageInput.addEventListener("keypress", function(e){
   
 </section>
 
-<!-- FAQ модальное окно -->
-<div class="faq-modal" id="faqModal">
-  ...
-</div>
+  </section>
 
-<footer>
-  ...
-</footer>
+  <!-- FAQ модальное окно -->
+  <div class="faq-modal" id="faqModal">
+    <div class="faq-content">
+      <div class="faq-header">
+        Часто задаваемые вопросы
+        <span class="faq-close" onclick="closeFaq()">✕</span>
+      </div>
 
-<script>
-  // toggleCard
-  // knowledge
-  // чат
-  // openFaq
-  // closeFaq
-</script>
+      <div class="faq-body">
+        <div class="faq-item">
+          <h3>Как оформить заказ?</h3>
+          <p>Свяжитесь с нами через WhatsApp или Telegram, укажите название препарата и количество упаковок.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Какая упаковка у препаратов?</h3>
+          <p>Большинство препаратов поставляются в оригинальных японских упаковках по 50 ампул, некоторые — по 100 ампул.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Можно ли получить консультацию?</h3>
+          <p>Да, мы поможем подобрать препарат и расскажем об особенностях применения. Окончательное решение о применении должен принимать врач.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Как осуществляется доставка?</h3>
+          <p>Доставка обсуждается индивидуально после подтверждения заказа.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleCard(card){
+      document.querySelectorAll(".card").forEach(function(item){
+        if(item !== card){
+          item.classList.remove("active");
+        }
+      });
+      card.classList.toggle("active");
+    }
+
+    // ===== FAQ =====
+    function openFaq(){
+      document.getElementById("faqModal").style.display = "flex";
+    }
+
+    function closeFaq(){
+      document.getElementById("faqModal").style.display = "none";
+    }
+
+    // закрытие по клику на фон
+    document.addEventListener("click", function(e){
+      const modal = document.getElementById("faqModal");
+      if(e.target === modal){
+        closeFaq();
+      }
+    });
+  </script>
 
 </body>
 </html>
-
-
